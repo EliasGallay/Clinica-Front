@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,scss}\" \"*.{js,jsx,ts,tsx,mjs,cjs,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,css,scss}\" \"*.{js,jsx,ts,tsx,mjs,cjs,json,md,yml,yaml}\"",
     "typecheck": "tsc --noEmit",
     "prepare": "husky install"
   },
