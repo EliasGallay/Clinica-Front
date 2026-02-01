@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,scss}\" \"*.{js,jsx,ts,tsx,mjs,cjs,json,md,yml,yaml}\"",
+    "typecheck": "tsc --noEmit",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -27,6 +29,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "husky": "^9.0.0",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4.1.18",
     "typescript": "^5"
   }
