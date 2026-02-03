@@ -1,12 +1,15 @@
-import LoginForm from './_components/LoginForm';
+import { FormSection } from './_components/FormSection';
+import { HeroSection } from './_components/HeroSection';
+import { HeroSectionMobile } from './_components/HeroSectionMobile';
 
 export default function LoginPage() {
   return (
-    <div style={{ display: 'grid', gap: 12 }}>
-      <h2 style={{ margin: 0 }}>Iniciar sesión</h2>
-      <p style={{ marginTop: 0, opacity: 0.8 }}>Ingresá tus credenciales para continuar.</p>
-
-      <LoginForm />
+    <div className="lg:m-auto bg-white lg:rounded-lg lg:shadow-lg max-w-4xl w-full h-full ">
+      <div className="grid lg:grid-cols-2">
+        <HeroSectionMobile />
+        <FormSection />
+        <HeroSection />
+      </div>
     </div>
   );
 }
