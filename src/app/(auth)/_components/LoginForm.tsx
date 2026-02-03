@@ -25,7 +25,7 @@ export default function LoginForm() {
 
   return (
     <div className="flex flex-col gap-6 pt-12 lg:pt-0">
-      <div className='flex flex-col items-center'>
+      <div className="flex flex-col items-center">
         <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
           Iniciar Sesión
         </Typography>
