@@ -1,71 +1,47 @@
 'use client';
 
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { LoginSchema } from '../_schema/LoginSchema';
+import { joiResolver } from '@hookform/resolvers/joi';
+import { FormTextInput } from '@/components/formInputs/FormTextInput';
+import { LoginFormValues } from '@/types/login/LoginFormValues';
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
-    setIsSubmitting(true);
-
-    try {
-      // Simulación (después lo conectás a tu API / auth)
-      await new Promise((r) => setTimeout(r, 800));
-
-      if (!email || !password) throw new Error('Completá email y contraseña.');
-
-      // ejemplo: redirigir o setear sesión
-      alert(`Login OK: ${email}`);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error inesperado.');
-    } finally {
-      setIsSubmitting(false);
-    }
+  const {
+    control,
+    formState: { errors, isSubmitting },
+    handleSubmit,
+  } = useForm<LoginFormValues>({
+    resolver: joiResolver(LoginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+  async function onSubmit(data: LoginFormValues) {
+    console.log('🚀 ~ onSubmit ~ data:', data);
   }
 
   return (
-    <form
-      onSubmit={onSubmit}
-      style={{
-        display: 'grid',
-        gap: 10,
-        padding: 16,
-        border: '1px solid rgba(0,0,0,0.12)',
-        borderRadius: 12,
-      }}
-    >
-      <label style={{ display: 'grid', gap: 6 }}>
-        <span>Email</span>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          autoComplete="email"
-          placeholder="tu@email.com"
-          style={{ padding: 10, borderRadius: 10, border: '1px solid #ccc' }}
-        />
-      </label>
-
-      <label style={{ display: 'grid', gap: 6 }}>
-        <span>Contraseña</span>
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          autoComplete="current-password"
-          placeholder="••••••••"
-          style={{ padding: 10, borderRadius: 10, border: '1px solid #ccc' }}
-        />
-      </label>
-
-      {error && <div style={{ color: 'crimson', fontSize: 14 }}>{error}</div>}
-
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormTextInput
+        id="email"
+        name="email"
+        label="Email"
+        type="email"
+        control={control}
+        error={!!errors.email}
+        helperText={errors.email ? errors.email.message?.toString() : ''}
+      />
+      <FormTextInput
+        id="password"
+        name="password"
+        label="Contraseña"
+        type="password"
+        control={control}
+        error={!!errors.password}
+        helperText={errors.password ? errors.password.message?.toString() : ''}
+      />
       <button
         type="submit"
         disabled={isSubmitting}
