@@ -17,7 +17,6 @@ export const FormTextInput = <TFieldValues extends FieldValues = FieldValues>(
     disabled = false,
     ...rest
   } = props;
-  console.log('🚀 ~ onSubmit ~ helperText:', helperText);
 
   return (
     <>
