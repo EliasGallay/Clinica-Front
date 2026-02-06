@@ -1,7 +1,6 @@
 'use client';
 
 import { SideBarItem } from '@/types/layout/SideBarItem';
-import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import { iconComponents } from '@/utils/IconComponents';
 import React from 'react';
@@ -28,15 +27,15 @@ export function SideBar({
 }) {
   const pathnameRouter = usePathname();
   return (
-    <Box className="px-2 py-2 bg-white" sx={{ width: '300px !important' }}>
-      <Box className="px-3 py-2 mb-4 ">
+    <div className="px-2 py-2 bg-white w-72 border-r border-gray-200 ">
+      <div className="px-3 py-2 mb-4 ">
         <Typography variant="h6" fontWeight={600} color="var(--mui-palette-text-primary)">
           {title}
         </Typography>
         <Typography variant="body2" color="var(--mui-palette-text-secondary)">
           {subTitle}
         </Typography>
-      </Box>
+      </div>
       <List sx={{ px: 3 }} className="flex flex-col gap-3">
         {navItems.map((item) => {
           const active = isActive(pathname, item.sub_path_to, pathnameRouter);
@@ -80,6 +79,6 @@ export function SideBar({
           );
         })}
       </List>
-    </Box>
+    </div>
   );
 }

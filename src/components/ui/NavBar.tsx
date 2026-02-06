@@ -5,7 +5,6 @@ import Link from 'next/link';
 import {
   AppBar,
   Toolbar,
-  Box,
   Button,
   IconButton,
   InputBase,
@@ -38,23 +37,27 @@ export default function Navbar() {
   const onCloseMenu = () => setAnchorEl(null);
 
   return (
-    <AppBar position="sticky" elevation={0} sx={{ boxShadow: 'none !important' }}>
+    <AppBar
+      position="sticky"
+      elevation={0}
+      sx={{ boxShadow: 'none !important', borderBottom: '1px solid var(--mui-palette-divider)' }}
+    >
       <Toolbar className="min-h-[64px] px-3 sm:px-6">
         {/* Left: Logo + Branding */}
-        <Box className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3">
             <EmergencyOutlinedIcon fontSize="large" color="primary" />
 
-            <Box className="hidden sm:block">
+            <div className="hidden sm:block">
               <Typography variant="h6" className="text-[var(--mui-palette-text-primary)]">
                 Clínica Backoffice
               </Typography>
-            </Box>
+            </div>
           </Link>
-        </Box>
+        </div>
 
         {/* Center: Nav items */}
-        <Box className="md:flex items-center justify-end gap-1 ml-6">
+        <div className="md:flex items-center justify-end gap-1 ml-6">
           {NAV_ITEMS.map((item) => (
             <Button
               key={item.mod_path_to}
@@ -69,13 +72,13 @@ export default function Navbar() {
               </Typography>
             </Button>
           ))}
-        </Box>
+        </div>
 
         {/* Spacer */}
-        <Box sx={{ flexGrow: 1 }} />
+        <div className="flex-grow" />
 
         {/* Search */}
-        <Box
+        <div
           className="hidden sm:flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 w-[100px] md:w-[250px]"
           role="search"
         >
@@ -85,10 +88,10 @@ export default function Navbar() {
             className="w-full text-slate-700"
             inputProps={{ 'aria-label': 'Buscar' }}
           />
-        </Box>
+        </div>
 
         {/* Right: Profile */}
-        <Box className="flex items-center gap-2 ml-3">
+        <div className="flex items-center gap-2 ml-3">
           <Tooltip title="Perfil">
             <IconButton onClick={onOpenMenu} size="small" className="hover:bg-slate-100">
               <Avatar sx={{ width: 34, height: 34 }} alt="Perfil" src="" />
@@ -106,14 +109,14 @@ export default function Navbar() {
               sx: { minWidth: 220, mt: 1 },
             }}
           >
-            <Box className="px-4 py-3">
+            <div className="px-4 py-3">
               <Typography className="text-slate-900 font-semibold leading-tight">
                 {user?.usr_txt_email || 'Usuario'}
               </Typography>
               <Typography className="text-slate-500 text-sm">
                 {user?.roles?.join(', ').toUpperCase() || 'Rol no asignado'}
               </Typography>
-            </Box>
+            </div>
 
             <Divider />
 
@@ -136,7 +139,7 @@ export default function Navbar() {
               Cerrar sesión
             </MenuItem>
           </Menu>
-        </Box>
+        </div>
       </Toolbar>
     </AppBar>
   );

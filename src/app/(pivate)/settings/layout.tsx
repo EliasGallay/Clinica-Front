@@ -3,7 +3,7 @@ import { SideBarItem } from '@/types/layout/SideBarItem';
 
 const NAV_ITEMS: SideBarItem[] = [
   {
-    sub_txt_name: 'Perfil',
+    sub_txt_name: 'General',
     sub_path_to: '/profile',
     sub_icon: 'SettingsSuggestOutlinedIcon',
   },

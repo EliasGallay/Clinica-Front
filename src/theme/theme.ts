@@ -80,6 +80,7 @@ export const theme = createTheme({
     text: {
       primary: BRAND.gray[900],
       secondary: BRAND.gray[600],
+      disabled: alpha(BRAND.gray[900], 0.3),
     },
     divider: BRAND.gray[200],
     action: {
@@ -89,6 +90,7 @@ export const theme = createTheme({
       disabled: alpha(BRAND.gray[900], 0.3),
       disabledBackground: alpha(BRAND.gray[900], 0.06),
     },
+    grey: BRAND.gray,
   },
 
   shape: {
@@ -144,6 +146,17 @@ export const theme = createTheme({
         // Ayuda a que inputs hereden font bien
         'input, button, textarea, select': {
           font: 'inherit',
+        },
+      },
+    },
+
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none !important',
+          fieldset: {
+            borderColor: alpha(BRAND.gray[900], 0.18) + ' !important',
+          },
         },
       },
     },

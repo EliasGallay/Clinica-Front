@@ -5,7 +5,7 @@ import { LoginSchema } from '../_schema/LoginSchema';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { FormTextInput } from '@/components/formInputs/FormTextInput';
 import { LoginFormValues } from '@/types/login/LoginFormValues';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { useLogin } from '@/components/hooks/useLogin';
 
 export default function LoginForm() {
@@ -55,13 +55,9 @@ export default function LoginForm() {
           error={!!errors.password}
           helperText={errors.password ? errors.password.message?.toString() : ''}
         />
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="p-2 bg-blue-500 text-white rounded-lg cursor-pointer disabled:opacity-50 hover:bg-blue-600 transition-colors mt-4 mt-6"
-        >
-          {isSubmitting ? 'Ingresando...' : 'Entrar'}
-        </button>
+        <Button type="submit" disabled={isSubmitting} variant="contained" sx={{ mt: 2 }}>
+          <Typography variant="button">{isSubmitting ? 'Ingresando...' : 'Ingresar'}</Typography>
+        </Button>
       </form>
     </div>
   );
