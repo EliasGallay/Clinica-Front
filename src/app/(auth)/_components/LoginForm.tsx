@@ -6,6 +6,7 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import { FormTextInput } from '@/components/formInputs/FormTextInput';
 import { LoginFormValues } from '@/types/login/LoginFormValues';
 import { Typography } from '@mui/material';
+import { useLogin } from '@/components/hooks/useLogin';
 
 export default function LoginForm() {
   const {
@@ -15,12 +16,14 @@ export default function LoginForm() {
   } = useForm<LoginFormValues>({
     resolver: joiResolver(LoginSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'admin@clinica.it.com',
+      password: 'Password123!',
     },
   });
+  const { handleLogin, loading, error } = useLogin();
   async function onSubmit(data: LoginFormValues) {
     console.log('🚀 ~ onSubmit ~ data:', data);
+    handleLogin(data);
   }
 
   return (
