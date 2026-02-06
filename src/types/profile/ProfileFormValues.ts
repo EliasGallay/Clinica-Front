@@ -13,4 +13,4 @@ export type ProfileFormValues = {
   employeeState?: boolean;
   specialty?: string;
   state?: boolean;
-}
+};

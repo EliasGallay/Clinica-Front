@@ -2,7 +2,7 @@ import { ProfileFormValues } from '@/types/profile/ProfileFormValues';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { Avatar, Button, Chip, Divider, Typography } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
-import { FieldErrors, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { ProfileSchema } from '../_schema/ProfileSchema';
 import { useAppSelector } from '@/store/hook';
 import { useEffect } from 'react';

@@ -21,7 +21,7 @@ export type Me = {
     per_txt_address: string;
     per_sta_state: boolean;
     per_txt_photo?: string;
-  }
+  };
   doctor_data?: {
     doc_txt_specialty: string;
     doc_txt_employee_id: string;
