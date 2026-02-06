@@ -4,7 +4,7 @@
 
 import { createTheme, alpha } from '@mui/material/styles';
 
-const BRAND = {
+export const BRAND = {
   // Azules (confianza / clínica)
   blue: {
     50: '#eff6ff',
@@ -80,6 +80,7 @@ export const theme = createTheme({
     text: {
       primary: BRAND.gray[900],
       secondary: BRAND.gray[600],
+      disabled: alpha(BRAND.gray[900], 0.3),
     },
     divider: BRAND.gray[200],
     action: {
@@ -89,6 +90,7 @@ export const theme = createTheme({
       disabled: alpha(BRAND.gray[900], 0.3),
       disabledBackground: alpha(BRAND.gray[900], 0.06),
     },
+    grey: BRAND.gray,
   },
 
   shape: {
@@ -148,6 +150,17 @@ export const theme = createTheme({
       },
     },
 
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none !important',
+          fieldset: {
+            borderColor: alpha(BRAND.gray[900], 0.18) + ' !important',
+          },
+        },
+      },
+    },
+
     MuiContainer: {
       defaultProps: {
         maxWidth: 'lg',
@@ -161,7 +174,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: 'none',
-          backgroundColor: 'rgba(255, 255, 255, 0.88)',
+          backgroundColor: 'rgba(255, 255, 255, 0.88) !important',
           backdropFilter: 'blur(8px)',
           border: `1px solid ${alpha(BRAND.gray[900], 0.06)}`,
           boxShadow: '0px 8px 24px rgba(15, 23, 42, 0.08)',
