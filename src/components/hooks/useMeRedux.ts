@@ -29,7 +29,7 @@ export function useMeRedux() {
       const me = await res.json();
       dispatch(setUser(me));
       setIsLoading(false);
-    } catch  {
+    } catch {
       dispatch(clearUser());
       setIsLoading(false);
     }

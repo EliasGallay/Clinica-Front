@@ -48,7 +48,7 @@ export function useLogin() {
 
       router.replace(next);
       router.refresh(); // fuerza a re-ejecutar server components/layouts protegidos
-    } catch  {
+    } catch {
       setError('Error de red. Intente nuevamente.');
     } finally {
       setLoading(false);
