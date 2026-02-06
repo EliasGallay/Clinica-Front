@@ -1,5 +1,4 @@
-
-"use client";
+'use client';
 
 import { useLogout } from '@/components/hooks/useLogout';
 

@@ -20,7 +20,7 @@ export default function LoginForm() {
       password: 'Password123!',
     },
   });
-  const { handleLogin, loading, error } = useLogin();
+  const { handleLogin } = useLogin();
   async function onSubmit(data: LoginFormValues) {
     console.log('🚀 ~ onSubmit ~ data:', data);
     handleLogin(data);

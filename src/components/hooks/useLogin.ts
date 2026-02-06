@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { LoginFormValues } from "@/types/login/LoginFormValues";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { LoginFormValues } from '@/types/login/LoginFormValues';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 export function useLogin() {
   const router = useRouter();
@@ -11,31 +11,30 @@ export function useLogin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function handleLogin(data:LoginFormValues ) {
-
+  async function handleLogin(data: LoginFormValues) {
     setLoading(true);
     setError(null);
 
-    const email = String(data.email ?? "");
-    const password = String(data.password ?? "");
+    const email = String(data.email ?? '');
+    const password = String(data.password ?? '');
 
     if (!email || !password) {
-      setError("Email y password son obligatorios");
+      setError('Email y password son obligatorios');
       setLoading(false);
       return;
     }
 
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      console.log("🚀 ~ handleLogin ~ res:", res)
+      console.log('🚀 ~ handleLogin ~ res:', res);
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data?.message ?? "Credenciales inválidas");
+        setError(data?.message ?? 'Credenciales inválidas');
         setLoading(false);
         return;
       }
@@ -45,12 +44,12 @@ export function useLogin() {
        * - El JWT queda en cookies httpOnly
        * - No guardamos nada en localStorage
        */
-      const next = searchParams.get("next") ?? "/dashboard";
+      const next = searchParams.get('next') ?? '/dashboard';
 
       router.replace(next);
       router.refresh(); // fuerza a re-ejecutar server components/layouts protegidos
-    } catch (err) {
-      setError("Error de red. Intente nuevamente.");
+    } catch  {
+      setError('Error de red. Intente nuevamente.');
     } finally {
       setLoading(false);
     }

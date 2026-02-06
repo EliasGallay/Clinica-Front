@@ -4,10 +4,10 @@ import { cookies } from 'next/headers';
 import { beUrl } from '@/lib/be';
 
 async function logout(accessToken: string) {
-  return fetch(beUrl("/auth/logout"), {
-    method: "POST",
+  return fetch(beUrl('/auth/logout'), {
+    method: 'POST',
     headers: { Authorization: `Bearer ${accessToken}` },
-    cache: "no-store",
+    cache: 'no-store',
   });
 }
 

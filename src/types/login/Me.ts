@@ -10,4 +10,4 @@ export type Me = {
   usr_dat_created_at: string;
   usr_dat_updated_at: string;
   date_deleted_at: string | null;
-}
+};

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useCallback, useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { setUser, clearUser  } from "@/store/userSlice";
+import { useCallback, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { setUser, clearUser } from '@/store/userSlice';
 
 export function useMeRedux() {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,10 +15,10 @@ export function useMeRedux() {
     setIsLoading(true);
 
     try {
-      const res = await fetch("/api/auth/me", {
-        method: "GET",
-        credentials: "include",
-        cache: "no-store",
+      const res = await fetch('/api/auth/me', {
+        method: 'GET',
+        credentials: 'include',
+        cache: 'no-store',
       });
 
       if (res.status === 401) {
@@ -29,7 +29,7 @@ export function useMeRedux() {
       const me = await res.json();
       dispatch(setUser(me));
       setIsLoading(false);
-    } catch (error) {
+    } catch  {
       dispatch(clearUser());
       setIsLoading(false);
     }
@@ -37,7 +37,7 @@ export function useMeRedux() {
 
   return {
     ...userState,
-     isLoading,
+    isLoading,
     loadMe,
   };
 }
