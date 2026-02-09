@@ -17,21 +17,23 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import EmergencyOutlinedIcon from '@mui/icons-material/EmergencyOutlined';
-import { useAppSelector } from '@/store/hook';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { useLogout } from '../hooks/useLogout';
-import { NavItem } from '@/types/layout/NavItem';
-
-const NAV_ITEMS: NavItem[] = [
-  { mod_txt_name: 'Dashboard', mod_path_to: '/dashboard' },
-  { mod_txt_name: 'Gestion', mod_path_to: '/gestion' },
-  { mod_txt_name: 'Settings', mod_path_to: '/settings' },
-];
+import { useModules } from '../hooks/useModules';
+import { useEffect, useState } from 'react';
+import { setModules } from '@/store/moduleSlice';
 
 export default function Navbar() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const user = useAppSelector((s) => s.userStore).user;
   const { handleLogout } = useLogout();
+  const { modules } = useModules();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setModules(modules));
+  }, [modules, dispatch]);
 
   const onOpenMenu = (e: React.MouseEvent<HTMLElement>) => setAnchorEl(e.currentTarget);
   const onCloseMenu = () => setAnchorEl(null);
@@ -58,7 +60,7 @@ export default function Navbar() {
 
         {/* Center: Nav items */}
         <div className="md:flex items-center justify-end gap-1 ml-6">
-          {NAV_ITEMS.map((item) => (
+          {modules.map((item) => (
             <Button
               key={item.mod_path_to}
               component={Link}

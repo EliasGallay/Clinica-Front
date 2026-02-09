@@ -1,15 +1,17 @@
+'use client';
+
 import { SideBar } from '@/components/ui/SideBar';
+import { useAppSelector } from '@/store/hook';
 import { SideBarItem } from '@/types/layout/SideBarItem';
+import { getPathname } from '@/utils/getPathname';
+import { getSubModules } from '@/utils/getSubModules';
+import { usePathname } from 'next/navigation';
 
-const NAV_ITEMS: SideBarItem[] = [
-  {
-    sub_txt_name: 'Estado General',
-    sub_path_to: '/overview',
-    sub_icon: 'DashboardOutlinedIcon',
-  },
-];
-
-export default function dashboardLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const LAYOUT_KEY = getPathname(pathname); // Obtiene la primera parte de la ruta para identificar el módulo
+  const modules = useAppSelector((s) => s.moduleStore.modules);
+  const NAV_ITEMS: SideBarItem[] = getSubModules(modules, LAYOUT_KEY);
   return (
     <div className="flex min-h-[calc(100vh-64px)]">
       {/* Sidebar */}

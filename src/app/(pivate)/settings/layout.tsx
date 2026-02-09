@@ -1,20 +1,17 @@
-import { SideBar } from '@/components/ui/SideBar';
-import { SideBarItem } from '@/types/layout/SideBarItem';
+'use client';
 
-const NAV_ITEMS: SideBarItem[] = [
-  {
-    sub_txt_name: 'General',
-    sub_path_to: '/profile',
-    sub_icon: 'SettingsSuggestOutlinedIcon',
-  },
-  {
-    sub_txt_name: 'Usuarios',
-    sub_path_to: '/users',
-    sub_icon: 'PeopleOutlineOutlinedIcon',
-  },
-];
+import { SideBar } from '@/components/ui/SideBar';
+import { useAppSelector } from '@/store/hook';
+import { SideBarItem } from '@/types/layout/SideBarItem';
+import { getPathname } from '@/utils/getPathname';
+import { getSubModules } from '@/utils/getSubModules';
+import { usePathname } from 'next/navigation';
 
 export default function SettingsLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const LAYOUT_KEY = getPathname(pathname); // Obtiene la primera parte de la ruta para identificar el módulo
+  const modules = useAppSelector((s) => s.moduleStore.modules);
+  const NAV_ITEMS: SideBarItem[] = getSubModules(modules, LAYOUT_KEY);
   return (
     <div className="flex min-h-[calc(100vh-64px)]">
       {/* Sidebar */}

@@ -30,7 +30,6 @@ export function useLogin() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      console.log('🚀 ~ handleLogin ~ res:', res);
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
