@@ -1,6 +1,6 @@
-import { SideBarItem } from "./SideBarItem";
+import { SideBarItem } from './SideBarItem';
 
-export type NavItem = { 
+export type NavItem = {
   mod_id: number;
   mod_txt_key: string;
   mod_txt_name: string;
@@ -11,4 +11,4 @@ export type NavItem = {
   mod_dat_updated_at: string;
   mod_dat_deleted_at: string | null;
   mod_submodules?: SideBarItem[];
- };
+};

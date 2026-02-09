@@ -16,13 +16,16 @@ export function useModules() {
       });
       const data: NavItem[] = await res.json();
 
-      if(data) {
+      if (data) {
         // Ordenar los módulos por mod_int_order
         data.sort((a, b) => a.mod_int_order - b.mod_int_order);
         // Ordenar los submódulos de cada módulo por sub_int_order
         data.forEach((mod) => {
           if (mod.mod_submodules) {
-            mod.mod_submodules.sort((a: { sub_int_order: number }, b: { sub_int_order: number }) => a.sub_int_order - b.sub_int_order);
+            mod.mod_submodules.sort(
+              (a: { sub_int_order: number }, b: { sub_int_order: number }) =>
+                a.sub_int_order - b.sub_int_order
+            );
           }
         });
 
