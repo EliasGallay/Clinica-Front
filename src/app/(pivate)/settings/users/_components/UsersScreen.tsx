@@ -28,17 +28,15 @@ export default function UsersScreen() {
         case 'actions':
           return {
             ...header,
-            render: (_value: AnyObject, row: AnyObject) => (
-              <div className="flex items-center space-x-2">
-
-              </div>
+            render: (_value: AnyObject, _row: AnyObject) => (
+              <div className="flex items-center space-x-2"></div>
             ),
           };
         default:
           return header;
       }
     });
-  }, [headers]);
+  }, []);
   return (
     <div className="p-4 md:p-6">
       <TitleCard

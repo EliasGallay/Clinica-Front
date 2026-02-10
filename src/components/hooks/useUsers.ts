@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { AnyObject } from '@/types/commons/AnyObject';
 import { Me } from '@/types/login/Me';

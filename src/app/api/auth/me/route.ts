@@ -9,7 +9,13 @@ async function fetchMe(accessToken: string) {
 }
 
 async function refreshTokens(refreshToken: string) {
-  return fetchBe('/auth/refresh', 'POST', refreshToken, { 'Content-Type': 'application/json' }, { refreshToken });
+  return fetchBe(
+    '/auth/refresh',
+    'POST',
+    refreshToken,
+    { 'Content-Type': 'application/json' },
+    { refreshToken }
+  );
 }
 
 export async function GET() {
