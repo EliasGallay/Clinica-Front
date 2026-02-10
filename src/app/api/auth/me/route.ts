@@ -1,23 +1,15 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { beUrl } from '@/lib/be';
 import { ACCESS_COOKIE, REFRESH_COOKIE, ACCESS_MAX_AGE, REFRESH_MAX_AGE } from '@/lib/auth';
 import { LoginResponse } from '@/types/login/LoginResponse';
+import { fetchBe } from '@/lib/fetchBe';
 
 async function fetchMe(accessToken: string) {
-  return fetch(beUrl('/users/me'), {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${accessToken}` },
-    cache: 'no-store',
-  });
+  return fetchBe('/users/me', 'GET', accessToken);
 }
 
 async function refreshTokens(refreshToken: string) {
-  return fetch(beUrl('/auth/refresh'), {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ refreshToken }),
-  });
+  return fetchBe('/auth/refresh', 'POST', refreshToken, { 'Content-Type': 'application/json' }, { refreshToken });
 }
 
 export async function GET() {
@@ -32,7 +24,6 @@ export async function GET() {
   // 1) probamos con access si existe
   if (accessToken) {
     const meRes = await fetchMe(accessToken);
-    console.log('🚀 ~ GET ~ meRes:', meRes);
     if (meRes.ok) {
       const me = await meRes.json().catch(() => null);
       return NextResponse.json(me, { status: 200 });

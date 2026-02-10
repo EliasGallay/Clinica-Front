@@ -1,14 +1,10 @@
 import { NextResponse } from 'next/server';
 import { ACCESS_COOKIE, REFRESH_COOKIE } from '@/lib/auth';
 import { cookies } from 'next/headers';
-import { beUrl } from '@/lib/be';
+import { fetchBe } from '@/lib/fetchBe';
 
 async function logout(accessToken: string) {
-  return fetch(beUrl('/auth/logout'), {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${accessToken}` },
-    cache: 'no-store',
-  });
+  return fetchBe('/auth/logout', 'POST', accessToken);
 }
 
 export async function POST() {

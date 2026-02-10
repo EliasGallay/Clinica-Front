@@ -9,12 +9,11 @@ export async function GET() {
   if (!accessToken) {
     return NextResponse.json({ message: 'No autenticado' }, { status: 401 });
   }
-  const beRes = await fetchBe('/modules', 'GET', accessToken);
-
+  const beRes = await fetchBe('/users', 'GET', accessToken);
   if (!beRes.ok) {
     const err = await beRes.json().catch(() => ({}));
     return NextResponse.json(
-      { message: err?.message ?? 'Módulos no disponibles' },
+      { message: err?.message ?? 'Usuarios no disponibles' },
       { status: beRes.status }
     );
   }
