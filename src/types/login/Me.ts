@@ -1,7 +1,7 @@
-import { Permission } from "./Permission";
+import { Permission } from './Permission';
 
 export type Me = {
-  permissions: Permission[],
+  permissions: Permission[];
   user: {
     usr_idt_id: number;
     per_id: number;

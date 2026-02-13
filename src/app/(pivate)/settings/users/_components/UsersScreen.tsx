@@ -20,7 +20,7 @@ export default function UsersScreen() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { fetchUsers, error } = useUsers();
 
-   const handleActionClick = (e: React.MouseEvent<HTMLElement>, userId: string) => {
+  const handleActionClick = (e: React.MouseEvent<HTMLElement>, userId: string) => {
     // Aquí puedes manejar las acciones para cada usuario, como abrir un menú de opciones o un modal de edición
     setAnchorEl(e.currentTarget);
     setOpenMenuId(userId); // Si quieres abrir un menú específico para cada usuario, puedes usar el ID del usuario aquí
@@ -135,8 +135,6 @@ export default function UsersScreen() {
     ],
     []
   );
-
- 
 
   return (
     <div className="p-4 md:p-6">
