@@ -1,11 +1,10 @@
 'use client';
 
 import { AnyObject } from '@/types/commons/AnyObject';
-import { Me } from '@/types/login/Me';
-import { useCallback, useEffect, useState } from 'react';
+import { User } from '@/types/login/User';
+import { useCallback, useState } from 'react';
 
 export function useUsers() {
-  const [users, setUsers] = useState<Me[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,18 +15,11 @@ export function useUsers() {
       const res = await fetch('/api/users', {
         method: 'GET',
       });
-      const data: Me[] = await res.json();
+      const data: User[] = await res.json();
 
       if (data && Array.isArray(data)) {
-        setUsers((prevModules) => {
-          // Evitar actualizar el estado si los datos son iguales (comparación profunda)
-          if (JSON.stringify(prevModules) === JSON.stringify(data)) {
-            return prevModules; // No se actualiza el estado, evitando un re-render innecesario
-          }
-          return data; // Actualiza el estado con los nuevos datos
-        });
+        return data; // Si se obtuvieron usuarios, se retorna el array de usuarios.
       } else {
-        setUsers([]); // Si no se obtuvieron usuarios, se setea el estado a un array vacío.
         setError((data as AnyObject).message || 'No se encontraron usuarios'); // Si la respuesta no es un array, se muestra un mensaje de error.
       }
     } catch {
@@ -37,9 +29,5 @@ export function useUsers() {
     }
   }, []);
 
-  useEffect(() => {
-    fetchUsers();
-  }, [fetchUsers]);
-
-  return { users, loading, error };
+  return { fetchUsers, loading, error };
 }

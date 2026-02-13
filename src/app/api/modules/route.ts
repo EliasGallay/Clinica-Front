@@ -21,5 +21,5 @@ export async function GET() {
 
   const data = await beRes.json();
 
-  return data;
+  return NextResponse.json(data, { status: 200 });
 }

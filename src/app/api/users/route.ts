@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { fetchBe } from '@/lib/fetchBe';
 import { ACCESS_COOKIE } from '@/lib/auth';
-import { cookies } from 'next/dist/server/request/cookies';
+import { cookies } from 'next/headers';
 
 export async function GET() {
   const jar = await cookies();
@@ -9,7 +9,7 @@ export async function GET() {
   if (!accessToken) {
     return NextResponse.json({ message: 'No autenticado' }, { status: 401 });
   }
-  const beRes = await fetchBe('/users', 'GET', accessToken);
+  const beRes = await fetchBe('/users/all', 'GET', accessToken);
   if (!beRes.ok) {
     const err = await beRes.json().catch(() => ({}));
     return NextResponse.json(
@@ -19,6 +19,6 @@ export async function GET() {
   }
 
   const data = await beRes.json();
-
-  return data;
+  
+   return NextResponse.json(data, { status: 200 });
 }

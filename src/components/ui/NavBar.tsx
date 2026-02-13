@@ -113,10 +113,10 @@ export default function Navbar() {
           >
             <div className="px-4 py-3">
               <Typography className="text-slate-900 font-semibold leading-tight">
-                {user?.usr_txt_email || 'Usuario'}
+                {user?.user.usr_txt_email || 'Usuario'}
               </Typography>
               <Typography className="text-slate-500 text-sm">
-                {user?.roles?.join(', ').toUpperCase() || 'Rol no asignado'}
+                {user?.user.roles?.join(', ').toUpperCase() || 'Rol no asignado'}
               </Typography>
             </div>
 

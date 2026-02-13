@@ -14,7 +14,7 @@ export function useModules() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
-      const data: NavItem[] = await res.json();
+      const { data }: { data: NavItem[] } = await res.json();
 
       if (data) {
         // Ordenar los módulos por mod_int_order

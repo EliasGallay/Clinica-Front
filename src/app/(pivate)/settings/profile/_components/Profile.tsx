@@ -42,7 +42,7 @@ export default function Profile() {
         firstName: user.person_data?.per_txt_first_name || '',
         lastName: user.person_data?.per_txt_last_name || '',
         email: user.person_data?.per_txt_email || '',
-        rol: user.roles[0] || '',
+        rol: user.user.roles[0] || '',
         phoneNumber: user.person_data?.per_txt_phone || '',
         address: user.person_data?.per_txt_address || '',
         photo: user.person_data?.per_txt_photo || '',
