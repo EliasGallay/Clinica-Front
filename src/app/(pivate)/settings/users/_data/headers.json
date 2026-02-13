@@ -1,0 +1,29 @@
+[
+  {
+    "id": "user",
+    "label": "USER",
+    "width": "25%"
+  },
+  {
+    "id": "email",
+    "label": "EMAIL",
+    "width": "20%"
+  },
+  {
+    "id": "role",
+    "label": "ROLE",
+    "width": "15%"
+  },
+  {
+    "id": "status",
+    "label": "STATUS",
+    "width": "15%"
+  },
+  {
+    "id": "actions",
+    "label": "ACTIONS",
+    "width": "5%",
+    "align": "left",
+    "hideSortIcon": true
+  }
+]

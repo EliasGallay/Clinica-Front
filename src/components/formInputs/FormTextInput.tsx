@@ -19,15 +19,15 @@ export const FormTextInput = <TFieldValues extends FieldValues = FieldValues>(
   } = props;
 
   return (
-    <>
-      <div>
+    <div>
+      <div className="mb-2">
         {label && (
           <InputLabel id={`${rest.id}-label`}>
             <Typography
               variant="body1"
               sx={{
                 fontWeight: 'bold',
-                color: 'black',
+                color: 'var(--mui-palette-text-secondary)',
               }}
             >
               {label}
@@ -50,6 +50,6 @@ export const FormTextInput = <TFieldValues extends FieldValues = FieldValues>(
           <Typography variant="body5">{helperText}</Typography>
         </FormHelperText>
       )}
-    </>
+    </div>
   );
 };
