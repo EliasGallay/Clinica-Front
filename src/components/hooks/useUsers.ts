@@ -13,8 +13,7 @@ export function useUsers() {
     setLoading(true);
     setError(null);
     try {
-     
-      const data: User[] = await getUsers()
+      const data: User[] = await getUsers();
 
       if (data && Array.isArray(data)) {
         return data; // Si se obtuvieron usuarios, se retorna el array de usuarios.

@@ -146,10 +146,10 @@ export default function UsersScreen() {
   const handleDeleteUser = () => {
     // Aquí puedes manejar la lógica para eliminar el usuario seleccionado, por ejemplo, llamar a una función de tu hook useUsers para eliminar el usuario por su ID
     console.log('Eliminar usuario con ID:', selectedUserId);
-    deleteUser(selectedUserId as string)
+    deleteUser(selectedUserId as string);
     setOpenDeleteModal(false);
     setSelectedUserId(null);
-  }
+  };
   return (
     <div className="p-4 md:p-6">
       <TitleCard

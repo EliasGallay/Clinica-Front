@@ -6,10 +6,14 @@ import { Control, FieldErrors, FieldValues } from 'react-hook-form';
 interface FormFieldsProps<T extends FieldValues> {
   control: Control<T>;
   errors: FieldErrors<T>;
-  fields?: FieldConfig<T>[]
+  fields?: FieldConfig<T>[];
 }
 
-export function FormFields<T extends FieldValues>({ control, errors = {}, fields}: FormFieldsProps<T>) {
+export function FormFields<T extends FieldValues>({
+  control,
+  errors = {},
+  fields,
+}: FormFieldsProps<T>) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {fields?.map((field) => {

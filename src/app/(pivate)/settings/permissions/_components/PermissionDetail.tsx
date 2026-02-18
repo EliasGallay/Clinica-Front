@@ -44,7 +44,10 @@ export const PermissionDetail = ({ roleId }: { roleId: string }) => {
     <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
       {permission?.map((perm) => {
         return (
-          <div key={perm.rpe_id} className="p-4 border border-gray-300 rounded-xl mb-2 bg-gray-50 flex items-center justify-between">
+          <div
+            key={perm.rpe_id}
+            className="p-4 border border-gray-300 rounded-xl mb-2 bg-gray-50 flex items-center justify-between"
+          >
             <div>
               <Typography variant="subtitle1" fontWeight={600}>
                 {firstLetterCapitalize(perm.rpe_permission_txt_name.split('.').join(' '))}
@@ -53,7 +56,9 @@ export const PermissionDetail = ({ roleId }: { roleId: string }) => {
             </div>
             <CustomFormGroupSwitch
               state={{ read: perm.rpe_bol_can_read, write: perm.rpe_bol_can_write }}
-              onChange={(event) => handlePermissionChange(perm.rpe_id, event.target.name as 'read' | 'write')}
+              onChange={(event) =>
+                handlePermissionChange(perm.rpe_id, event.target.name as 'read' | 'write')
+              }
             />
           </div>
         );

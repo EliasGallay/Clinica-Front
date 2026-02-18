@@ -9,4 +9,4 @@ export const getPermissionsByRole = async (roleId: string) => {
     console.error(`Error fetching permissions for role ${roleId}:`, error);
     throw error;
   }
-}
+};

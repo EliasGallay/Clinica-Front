@@ -1,4 +1,4 @@
-import { ModalProps } from "@mui/material";
+import { ModalProps } from '@mui/material';
 
 export interface CustomModalProps extends ModalProps {
   showCancelButton?: boolean;

@@ -3,4 +3,4 @@ export type Rol = {
   rol_description: string;
   rol_name: string;
   rol_weight: number;
-}
+};

@@ -13,7 +13,7 @@ export const validate = async (request: Request): Promise<ValidationResult | Nex
   const refreshToken = jar.get(REFRESH_COOKIE)?.value;
   if (!accessToken || !refreshToken) {
     const baseUrl = request.url.split('/').slice(0, 3).join('/');
-    const url = new URL("/", baseUrl); // ✅ URL absoluta
+    const url = new URL('/', baseUrl); // ✅ URL absoluta
     return NextResponse.redirect(url);
   }
 

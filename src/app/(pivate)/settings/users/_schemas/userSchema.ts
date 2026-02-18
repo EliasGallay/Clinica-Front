@@ -1,4 +1,4 @@
-import Joi from "joi";
+import Joi from 'joi';
 
 export const userSchema = Joi.object({
   per_txt_first_name: Joi.string().required(),
@@ -11,4 +11,4 @@ export const userSchema = Joi.object({
   per_txt_address: Joi.string().required(),
   roles: Joi.array().items(Joi.string()).required(),
   usr_sta_state: Joi.number().valid(0, 1).required(),
-})
+});

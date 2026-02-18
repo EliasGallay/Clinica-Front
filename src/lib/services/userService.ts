@@ -1,4 +1,4 @@
-import { User } from "@/types/users/User";
+import { User } from '@/types/users/User';
 
 export const getUserById = async (userId: string): Promise<User> => {
   try {
@@ -11,7 +11,7 @@ export const getUserById = async (userId: string): Promise<User> => {
     console.error(`Error fetching user with ID ${userId}:`, error);
     throw error;
   }
-}
+};
 
 export const getUsers = async (): Promise<User[]> => {
   try {
@@ -34,4 +34,4 @@ export const deleteUser = async (userId: string): Promise<void> => {
     console.error('Error deleting user:', error);
     throw error;
   }
-}
+};

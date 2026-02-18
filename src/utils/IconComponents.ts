@@ -7,5 +7,5 @@ export const iconComponents: { [key: string]: React.ComponentType<{ sx?: object 
   SettingsSuggestOutlinedIcon,
   PeopleOutlineOutlinedIcon,
   DashboardOutlinedIcon,
-  AdminPanelSettingsOutlinedIcon
+  AdminPanelSettingsOutlinedIcon,
 };

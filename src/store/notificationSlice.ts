@@ -8,7 +8,7 @@ export type SnackbarItem = {
   message: string;
   severity?: SnackbarSeverity;
   autoHideDuration?: number; // ms
-  persist?: boolean;         // si querés que no se cierre solo
+  persist?: boolean; // si querés que no se cierre solo
 };
 
 type NotificationsState = {
@@ -43,11 +43,7 @@ const notificationsSlice = createSlice({
   },
 });
 
-export const {
-  enqueueSnackbar,
-  dequeueSnackbar,
-  removeSnackbar,
-  clearAll,
-} = notificationsSlice.actions;
+export const { enqueueSnackbar, dequeueSnackbar, removeSnackbar, clearAll } =
+  notificationsSlice.actions;
 
 export default notificationsSlice.reducer;

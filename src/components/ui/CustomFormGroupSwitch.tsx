@@ -93,13 +93,21 @@ export const CustomFormGroupSwitch: React.FC<CustomFormGroupSwitchProps> = ({
     <FormGroup sx={{ gap: 1 }}>
       <FormControlLabel
         control={<CustomSwitch checked={state.read} onChange={onChange} name="read" />}
-        label={<Typography variant="body5" fontStyle={'italic'} fontWeight={500}>Read</Typography>}
+        label={
+          <Typography variant="body5" fontStyle={'italic'} fontWeight={500}>
+            Read
+          </Typography>
+        }
         labelPlacement="start"
         sx={{ gap: 1 }}
       />
       <FormControlLabel
         control={<CustomSwitch checked={state.write} onChange={onChange} name="write" />}
-        label={<Typography variant="body5" fontStyle={'italic'} fontWeight={500}>Write</Typography>}
+        label={
+          <Typography variant="body5" fontStyle={'italic'} fontWeight={500}>
+            Write
+          </Typography>
+        }
         labelPlacement="start"
         sx={{ gap: 1 }}
       />

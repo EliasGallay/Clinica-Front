@@ -25,5 +25,5 @@ export const USER_FIELDS: { [key: string]: FieldConfig<UserFormValues>[] } = {
         { value: 0, label: 'Inactivo' },
       ],
     },
-  ]
+  ],
 };

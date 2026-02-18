@@ -21,7 +21,7 @@ async function refreshTokens(refreshToken: string) {
 export async function GET() {
   const jar = await cookies();
   const accessToken = jar.get(ACCESS_COOKIE)?.value;
-  const refreshToken = jar.get(REFRESH_COOKIE)?.value;  
+  const refreshToken = jar.get(REFRESH_COOKIE)?.value;
 
   // 1) probamos con access si existe
   if (accessToken) {

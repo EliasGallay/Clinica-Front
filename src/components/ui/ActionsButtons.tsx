@@ -24,7 +24,13 @@ export const ActionsButtons = ({
           {cancelButtonLabel}
         </Button>
       )}
-      <Button variant="contained" color="primary" type={type} loading={isSubmitting} disabled={isSubmitting}>
+      <Button
+        variant="contained"
+        color="primary"
+        type={type}
+        loading={isSubmitting}
+        disabled={isSubmitting}
+      >
         {confirmButtonLabel}
       </Button>
     </div>
