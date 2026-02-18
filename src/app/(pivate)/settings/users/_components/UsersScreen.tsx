@@ -13,12 +13,18 @@ import { ScreenLayoutTable } from '@/components/ui/ScreenLayoutTable';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { grey } from '@mui/material/colors';
-import { User } from '@/types/login/User';
+import { User } from '@/types/users/User';
+import { CustomModal } from '@/components/ui/CustomModal';
+import { deleteUser } from '@/lib/services/userService';
+import { useRouter } from 'next/navigation';
 
 export default function UsersScreen() {
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const { fetchUsers, error } = useUsers();
+  const router = useRouter();
 
   const handleActionClick = (e: React.MouseEvent<HTMLElement>, userId: string) => {
     // Aquí puedes manejar las acciones para cada usuario, como abrir un menú de opciones o un modal de edición
@@ -120,7 +126,8 @@ export default function UsersScreen() {
         color: 'textSecondary',
         action: (id: string) => {
           // Aquí puedes manejar la acción de editar usuario, por ejemplo, abrir un modal con el formulario de edición
-          console.log('Editar usuario con ID:', id);
+          setSelectedUserId(id);
+          router.push(`/settings/users/${id}`);
         },
       },
       {
@@ -128,14 +135,21 @@ export default function UsersScreen() {
         icon: <DeleteIcon fontSize="small" color="error" />,
         color: 'error',
         action: (id: string) => {
-          // Aquí puedes manejar la acción de eliminar usuario, por ejemplo, mostrar una confirmación antes de eliminar
-          console.log('Eliminar usuario con ID:', id);
+          setOpenDeleteModal(true);
+          setSelectedUserId(id);
         },
       },
     ],
-    []
+    [router]
   );
 
+  const handleDeleteUser = () => {
+    // Aquí puedes manejar la lógica para eliminar el usuario seleccionado, por ejemplo, llamar a una función de tu hook useUsers para eliminar el usuario por su ID
+    console.log('Eliminar usuario con ID:', selectedUserId);
+    deleteUser(selectedUserId as string)
+    setOpenDeleteModal(false);
+    setSelectedUserId(null);
+  }
   return (
     <div className="p-4 md:p-6">
       <TitleCard
@@ -153,6 +167,24 @@ export default function UsersScreen() {
         mapData={usersMap as unknown as (data: AnyObject) => AnyObject}
         fetchData={fetchUsers as unknown as (filters: AnyObject) => Promise<AnyObject[] | void>}
       />
+      <CustomModal
+        open={openDeleteModal}
+        title="Eliminar Usuario"
+        showCancelButton
+        showConfirmButton
+        onConfirm={() => {
+          setOpenDeleteModal(false);
+          handleDeleteUser();
+        }}
+        onClose={() => {
+          setOpenDeleteModal(false);
+          setSelectedUserId(null);
+        }}
+      >
+        <Typography variant="body1">
+          Deseas eliminar este usuario? Esta acción no se puede deshacer.
+        </Typography>
+      </CustomModal>
     </div>
   );
 }

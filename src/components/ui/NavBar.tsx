@@ -42,7 +42,12 @@ export default function Navbar() {
     <AppBar
       position="sticky"
       elevation={0}
-      sx={{ boxShadow: 'none !important', borderBottom: '1px solid var(--mui-palette-divider)' }}
+      sx={{
+        boxShadow: 'none !important',
+        borderBottom: '1px solid var(--mui-palette-divider)',
+        backgroundColor: 'rgba(255, 255, 255, 0.8) !important',
+        backdropFilter: 'blur(10px)',
+      }}
     >
       <Toolbar className="min-h-[64px] px-3 sm:px-6">
         {/* Left: Logo + Branding */}

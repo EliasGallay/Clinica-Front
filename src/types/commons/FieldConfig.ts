@@ -3,6 +3,6 @@ export type FieldConfig<T> = {
   label: string;
   type?: 'text' | 'email' | 'date' | 'tel' | 'select';
   disabled?: boolean;
-  options?: { label: string; value: string }[]; // para select
+  options?: { label: string; value: string | number }[]; // para select
   hidden?: boolean;
 };

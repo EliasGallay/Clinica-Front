@@ -3,6 +3,7 @@ import { ListTable } from '@/components/ui/ListTable';
 import { ScreenLayoutTableProps } from '@/types/layout/ScreenLayoutTableProps';
 import { useEffect } from 'react';
 import { useScreenLayout } from '../hooks/useScreenLayout';
+import { SkeletonTable } from './SkeletonTable';
 
 export const ScreenLayoutTable: React.FC<ScreenLayoutTableProps> = ({
   headers,
@@ -23,6 +24,7 @@ export const ScreenLayoutTable: React.FC<ScreenLayoutTableProps> = ({
     direction,
     page,
     rowsPerPage,
+    isLoading,
     setSearchValue,
     setOrderBy,
     loadData,
@@ -35,6 +37,10 @@ export const ScreenLayoutTable: React.FC<ScreenLayoutTableProps> = ({
   useEffect(() => {
     loadData();
   }, []);
+
+  if (isLoading) {
+    return <SkeletonTable />;
+  }
 
   return (
     <div>

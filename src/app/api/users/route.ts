@@ -1,14 +1,9 @@
 import { NextResponse } from 'next/server';
 import { fetchBe } from '@/lib/fetchBe';
-import { ACCESS_COOKIE } from '@/lib/auth';
-import { cookies } from 'next/headers';
+import { validate, ValidationResult } from '@/lib/validate';
 
-export async function GET() {
-  const jar = await cookies();
-  const accessToken = jar.get(ACCESS_COOKIE)?.value;
-  if (!accessToken) {
-    return NextResponse.json({ message: 'No autenticado' }, { status: 401 });
-  }
+export async function GET(request: Request) {
+  const { accessToken } = (await validate(request)) as ValidationResult;
   const beRes = await fetchBe('/users/all', 'GET', accessToken);
   if (!beRes.ok) {
     const err = await beRes.json().catch(() => ({}));

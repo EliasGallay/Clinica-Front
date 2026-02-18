@@ -1,3 +1,4 @@
+import { getModules } from '@/lib/services/modulesService';
 import { NavItem } from '@/types/layout/NavItem';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -10,11 +11,7 @@ export function useModules() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/modules', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      });
-      const { data }: { data: NavItem[] } = await res.json();
+      const { data }: { data: NavItem[] } = await getModules();
 
       if (data) {
         // Ordenar los módulos por mod_int_order
