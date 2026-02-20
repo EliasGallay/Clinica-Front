@@ -8,8 +8,15 @@ import { usePathname } from 'next/navigation';
 import { Button, Typography } from '@mui/material';
 import Link from 'next/link';
 
-function isActive(pathname: string, href: string, pathnameRouter: string): boolean {
-  return pathnameRouter === `${pathname}${href}`;
+function joinPath(a: string, b: string) {
+  const left = a.endsWith('/') ? a.slice(0, -1) : a;
+  const right = b.startsWith('/') ? b : `/${b}`;
+  return `${left}${right}`;
+}
+
+function isActive(basePath: string, href: string, currentPath: string): boolean {
+  const target = joinPath(basePath, href); // "/settings/users"
+  return currentPath === target || currentPath.startsWith(`${target}/`);
 }
 
 export function SideBar({

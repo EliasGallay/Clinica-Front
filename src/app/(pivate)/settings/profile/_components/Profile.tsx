@@ -42,6 +42,7 @@ export default function Profile() {
         firstName: user.person_data?.per_txt_first_name || '',
         lastName: user.person_data?.per_txt_last_name || '',
         email: user.person_data?.per_txt_email || '',
+        dni: user.person_data?.per_txt_dni || '',
         rol: user.user.roles[0] || '',
         phoneNumber: user.person_data?.per_txt_phone || '',
         address: user.person_data?.per_txt_address || '',

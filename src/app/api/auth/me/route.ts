@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
 import { ACCESS_COOKIE, REFRESH_COOKIE, ACCESS_MAX_AGE, REFRESH_MAX_AGE } from '@/lib/auth';
 import { LoginResponse } from '@/types/login/LoginResponse';
 import { fetchBe } from '@/lib/fetchBe';
+import { cookies } from 'next/headers';
 
 async function fetchMe(accessToken: string) {
   return fetchBe('/users/me', 'GET', accessToken);
@@ -22,10 +22,6 @@ export async function GET() {
   const jar = await cookies();
   const accessToken = jar.get(ACCESS_COOKIE)?.value;
   const refreshToken = jar.get(REFRESH_COOKIE)?.value;
-
-  if (!accessToken && !refreshToken) {
-    return NextResponse.json({ message: 'No autenticado' }, { status: 401 });
-  }
 
   // 1) probamos con access si existe
   if (accessToken) {

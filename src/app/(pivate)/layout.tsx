@@ -1,6 +1,7 @@
 'use client';
 
 import { useMeRedux } from '@/components/hooks/useMeRedux';
+import GlobalSnackbar from '@/components/ui/GlobalSnackbar';
 import Navbar from '@/components/ui/NavBar';
 import { useEffect } from 'react';
 
@@ -17,6 +18,7 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
     <>
       <Navbar />
       {children}
+      <GlobalSnackbar />
     </>
   );
 }

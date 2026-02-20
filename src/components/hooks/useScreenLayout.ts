@@ -11,6 +11,7 @@ export const useScreenLayout = ({ fetchData, mapData }: ScreenLayoutProps) => {
   const [direction, setDirection] = useState<'asc' | 'desc'>('desc');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [isLoading, setIsLoading] = useState(false);
 
   const loadData = async ({
     searchValue,
@@ -19,15 +20,21 @@ export const useScreenLayout = ({ fetchData, mapData }: ScreenLayoutProps) => {
     page,
     rowsPerPage,
   }: FilterParams = {}) => {
-    const data = await fetchData({ searchValue, orderBy, direction, page, rowsPerPage });
-    if (data) {
-      const mappedData = data.map(mapData);
-      setRows(mappedData);
-      setTotalCounts(mappedData.length);
-    } else {
+    setIsLoading(true);
+
+    try {
+      const data = await fetchData({ searchValue, orderBy, direction, page, rowsPerPage });
+      if (data) {
+        const mappedData = data.map(mapData);
+        setRows(mappedData);
+        setTotalCounts(mappedData.length);
+      }
+    } catch {
       setRows([]);
       setTotalCounts(0);
     }
+
+    setIsLoading(false);
   };
 
   const onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -44,6 +51,7 @@ export const useScreenLayout = ({ fetchData, mapData }: ScreenLayoutProps) => {
     direction,
     page,
     rowsPerPage,
+    isLoading,
     setSearchValue,
     setOrderBy,
     setDirection,

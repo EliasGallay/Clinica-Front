@@ -1,4 +1,4 @@
-import { FieldConfig } from './ProfileField';
+import { FieldConfig } from '../commons/FieldConfig';
 import { ProfileFormValues } from './ProfileFormValues';
 
 export const PROFILE_FIELDS: FieldConfig<ProfileFormValues>[] = [

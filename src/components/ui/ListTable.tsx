@@ -24,6 +24,8 @@ import { AnyObject } from '@/types/commons/AnyObject';
 import { get } from 'lodash';
 import Search from '@mui/icons-material/Search';
 import Clear from '@mui/icons-material/Clear';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export const ListTable: React.FC<ListTableProps> = ({
   showActionButton = true,
@@ -46,6 +48,7 @@ export const ListTable: React.FC<ListTableProps> = ({
   onRowClick,
   onKeyUp,
 }) => {
+  const pathname = usePathname();
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage!(newPage);
   };
@@ -124,15 +127,17 @@ export const ListTable: React.FC<ListTableProps> = ({
 
         {/* Action Button */}
         {showActionButton && (
-          <Button
-            variant="contained"
-            color="primary"
-            className="ml-2"
-            startIcon={<AddIcon />}
-            disabled={!actionButtonLabel}
-          >
-            {actionButtonLabel}
-          </Button>
+          <Link href={pathname + '/create'}>
+            <Button
+              variant="contained"
+              color="primary"
+              className="ml-2"
+              startIcon={<AddIcon />}
+              disabled={!actionButtonLabel}
+            >
+              {actionButtonLabel}
+            </Button>
+          </Link>
         )}
       </div>
       <Divider />

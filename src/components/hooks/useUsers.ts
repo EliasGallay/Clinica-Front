@@ -1,7 +1,8 @@
 'use client';
 
+import { getUsers } from '@/lib/services/userService';
 import { AnyObject } from '@/types/commons/AnyObject';
-import { User } from '@/types/login/User';
+import { User } from '@/types/users/User';
 import { useCallback, useState } from 'react';
 
 export function useUsers() {
@@ -12,10 +13,7 @@ export function useUsers() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/users', {
-        method: 'GET',
-      });
-      const data: User[] = await res.json();
+      const data: User[] = await getUsers();
 
       if (data && Array.isArray(data)) {
         return data; // Si se obtuvieron usuarios, se retorna el array de usuarios.

@@ -20,4 +20,5 @@ export interface ListTableProps {
   setRowsPerPage?: (rowsPerPage: number) => void;
   onRowClick?: (row: AnyObject) => void;
   onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  onConfirmActionButton?: () => void;
 }

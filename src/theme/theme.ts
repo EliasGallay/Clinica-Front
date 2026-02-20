@@ -167,21 +167,6 @@ export const theme = createTheme({
       },
     },
 
-    MuiPaper: {
-      defaultProps: {
-        elevation: 0,
-      },
-      styleOverrides: {
-        root: {
-          backgroundImage: 'none',
-          backgroundColor: 'rgba(255, 255, 255, 0.88) !important',
-          backdropFilter: 'blur(8px)',
-          border: `1px solid ${alpha(BRAND.gray[900], 0.06)}`,
-          boxShadow: '0px 8px 24px rgba(15, 23, 42, 0.08)',
-        },
-      },
-    },
-
     MuiCard: {
       defaultProps: {
         elevation: 0,
